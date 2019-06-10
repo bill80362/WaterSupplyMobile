@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Icon, NavBar,DatePickerView,Flex, WhiteSpace,Picker,PickerView,List, InputItem,Button} from "antd-mobile";
+import {Icon, NavBar,DatePickerView,Flex, WhiteSpace,Picker,PickerView,List, InputItem,Button,Toast} from "antd-mobile";
 import enUS from 'antd-mobile/lib/locale-provider/en_US';
 // 通过自定义 moneyKeyboardWrapProps 修复虚拟键盘滚动穿透问题
 // https://github.com/ant-design/ant-design-mobile/issues/307
@@ -18,28 +18,36 @@ export default class extends Component {
         value: new Date(),
         data : [
             {
-                label: '站點1號',
-                value: '站點1號',
+                label: '太平-育賢路彩卷行',
+                value: '太平-育賢路彩卷行',
             },
             {
-                label: '站點2號',
-                value: '站點2號',
+                label: '太平-新興路彩卷行',
+                value: '太平-新興路彩卷行',
             },
             {
-                label: '站點3號',
-                value: '站點3號',
+                label: '大里-XX里活動中心',
+                value: '大里-XX里活動中心',
             },
             {
-                label: '站點4號',
-                value: '站點4號',
+                label: '大里-德芳南路藥局',
+                value: '大里-德芳南路藥局',
             },
             {
-                label: '站點5號',
-                value: '站點5號',
+                label: '北屯-轉角水果攤',
+                value: '北屯-轉角水果攤',
             },
             {
-                label: '站點6號',
-                value: '站點6號',
+                label: '北屯-梅川瀋陽自助洗衣',
+                value: '北屯-梅川瀋陽自助洗衣',
+            },
+            {
+                label: '南屯-轉角水果攤',
+                value: '南屯-轉角水果攤',
+            },
+            {
+                label: '南屯-梅川瀋陽自助洗衣',
+                value: '南屯-梅川瀋陽自助洗衣',
             },
         ],
         StationValue:"",
@@ -61,19 +69,12 @@ export default class extends Component {
                     //icon={<Icon type="left" />}
                     onLeftClick={() => console.log('onLeftClick')}
                     //rightContent={<Icon type="ellipsis" />}
-                    style={{position: 'fixed',width: '100%',}}
+                    style={{width: '100%'}}
                 >收款輸入</NavBar>
-                <div style={{paddingTop:45,width: '100%'}}>
+                <div style={{width: '100%'}}>
                     <List>
-                        <List.Item>
-                        <DatePickerView
-                            mode={'month'}
-                            value={this.state.value}
-                            onChange={this.onChange}
-                            onValueChange={this.onValueChange}
-                        />
-                        </List.Item>
                     <Picker
+                        cols = '1'//好大的坑 默認是3
                         title="請選擇站點"
                         extra="[請點我]選擇站點"
                         data={this.state.data}
@@ -81,7 +82,7 @@ export default class extends Component {
                         onChange={v => this.setState({ StationValue: v })}
                         onOk={v => this.setState({ StationValue: v })}
                     >
-                        <List.Item arrow="horizontal">站點:</List.Item>
+                        <List.Item arrow="horizontal" style={{textAlign:'center'}}>站點:</List.Item>
                     </Picker>
                     <InputItem
                         type={'money'}
@@ -90,8 +91,18 @@ export default class extends Component {
                         onBlur={v => this.setState({MoneyValue:v})}
                         moneyKeyboardWrapProps={moneyKeyboardWrapProps}
                     >金額:</InputItem>
+                        <div style={{textAlign:'center',fontSize:'18px',margin:5}}>收款時間</div>
+                    <List.Item>
+                        <DatePickerView
+                            mode={'month'}
+                            value={this.state.value}
+                            onChange={this.onChange}
+                            onValueChange={this.onValueChange}
+                        />
+                    </List.Item>
                     </List>
-                    <Button type="primary" inline style={{width:'300px',margin:'5px'}}>新增收款</Button>
+                    <Button type="primary" inline style={{width:'300px',margin:'5px'}} onClick={()=>(Toast.success('新增成功'))}>新增收款</Button>
+                    <WhiteSpace size="xl" />
                     <WhiteSpace size="xl" />
                     <WhiteSpace size="xl" />
                     <WhiteSpace size="xl" />

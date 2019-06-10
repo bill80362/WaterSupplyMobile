@@ -4,7 +4,41 @@ import {Icon, NavBar,List} from "antd-mobile";
 export default class extends Component {
     state = {
         NavBarStyle: {display:''},
-        Page:'index'
+        Page:'index',
+        data : [
+            {
+                label: '太平-育賢路彩卷行',
+                value: '太平-育賢路彩卷行',
+            },
+            {
+                label: '太平-新興路彩卷行',
+                value: '太平-新興路彩卷行',
+            },
+            {
+                label: '大里-XX里活動中心',
+                value: '大里-XX里活動中心',
+            },
+            {
+                label: '大里-德芳南路藥局',
+                value: '大里-德芳南路藥局',
+            },
+            {
+                label: '北屯-轉角水果攤',
+                value: '北屯-轉角水果攤',
+            },
+            {
+                label: '北屯-梅川瀋陽自助洗衣',
+                value: '北屯-梅川瀋陽自助洗衣',
+            },
+            {
+                label: '南屯-轉角水果攤',
+                value: '南屯-轉角水果攤',
+            },
+            {
+                label: '南屯-梅川瀋陽自助洗衣',
+                value: '南屯-梅川瀋陽自助洗衣',
+            },
+        ],
     }
     GoDetailPage(data){
         console.log(data)
@@ -41,13 +75,13 @@ export default class extends Component {
                         // rightContent={<Icon type="ellipsis" />}
                         // style={this.state.NavBarStyle}
                     >瀏覽時間【2019.5】</NavBar>
-                    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].map((v)=> (
+                    {this.state.data.map((v)=> (
                         <List.Item
                             multipleLine
                             // onClick={() => {console.log(v)}}
-                            extra={<span onClick={()=>console.log('刪除',v)}>刪除</span>}
+                            extra={<span onClick={()=>console.log('刪除',v.label)}>刪除</span>}
                             error={true}
-                        >站點{v}號<List.Item.Brief>收款金額:1000元</List.Item.Brief></List.Item>
+                        >站點{v.label}號<List.Item.Brief>收款金額:1000元</List.Item.Brief></List.Item>
                     ))}
                 </List>
             )
